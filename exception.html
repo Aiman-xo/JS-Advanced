@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <input type="text" placeholder="enter the first number" id="a">
+    <input type="text" placeholder="enter the second number" id="b">
+    <input type="submit" value="submit" onclick="sum1()">
+    <p id="res"></p>
+
+
+    <script>
+
+        //1
+
+        function sum1() {
+            try {
+                const num1 = parseInt(document.getElementById('a').value);
+                const num2 = parseInt(document.getElementById('b').value);
+                const result = num1 + num2;
+
+                const res = document.getElementById('res');
+                if (num1 < 0 || num2 < 0) {
+                    throw new Error('negative numbers are not allowed');
+                }
+                if (isNaN(num1) || isNaN(num2)) {
+                    throw new Error("alphabet not allowed")
+                }
+
+                res.innerHTML = result;
+            }
+            catch (err) {
+
+                res.innerHTML = err;
+                res.style.color = 'red';
+            }
+
+
+
+
+
+
+        }
+
+        //2
+        function sum() {
+            const a = Number(prompt('enter the first number'));
+            const b = Number(prompt("enter the second number"));
+
+            if (isNaN(a) || isNaN(b)) {
+                throw new Error('cannot put alphabets here!'); // this error is created by us we create a scenario were the user
+                //input is not a number ie alphabets or boolean etc... then it throws this error.
+            }
+
+            const res = a + b;
+            alert(res);
+
+
+        }
+        try {
+            sum();//the calling of the function or the time were execution takes place there have to implement the try block
+
+        } catch (err) {
+            console.error(err);
+        }
+
+        //3
+
+
+        function age(age) {
+            try {
+                if (age < 18) {
+                    throw new Error('you are under Age!');
+                }
+                else {
+                    console.log('welcome to dark web');
+                }
+            } catch (err) {
+                console.log(err);
+            }
+        }
+
+        age(120);
+
+
+
+        const button = document.createElement('button');
+        button.textContent = 'click';
+
+        function onCl() {
+            alert('you clicked now...');
+
+        }
+
+        document.body.appendChild(button);
+
+        button.addEventListener('click', onCl);
+
+
+        // try {
+        //     function rec() {
+        //         console.log('object');
+        //         return rec()
+        //     }
+        //     rec()
+        // } catch (err) {
+        //     console.log(err);
+        // } finally {
+        //     console.log('done ..');
+        // }
+
+
+        let stack = [1, 2];
+
+
+        stack.__proto__.obj = {
+            peek: function () {
+                return stack[stack.length - 1];
+            },
+
+            isEmpty: function () {
+                return stack.length === 0;
+            }
+        }
+        console.log(stack.__proto__);
+        console.log(stack.obj.peek());
+
+        //proto
+
+
+        class Animals {
+            constructor(name, type, sound) {
+                this.name = name,
+                    this.type = type,
+                    this.sound = sound
+            }
+
+            doing() {
+                console.log(`${this.name} makes ${this.sound} sound`);
+            }
+        }
+
+        class Cat extends Animals {
+            constructor(name, price, type, sound) {
+                super(name, sound, type),
+                    this.price = price
+
+            }
+        }
+
+        const created = new Cat('nig', 2000, 'meow', 'persian');
+        console.log(created);
+        created.doing();
+        console.log(created.__proto__);
+
+
+        const te = document.createElement('button');
+        te.textContent = 'click';
+
+        document.body.appendChild(te);
+
+        function cl() {
+            return alert('hi there you did it');
+
+        }
+
+        te.addEventListener('click', cl);
+
+        document.body.removeChild(te);
+
+
+    </script>
+
+</body>
+
+</html>
